@@ -20,8 +20,8 @@
 从 GitHub 克隆仓库：
 
 ```bash
-git clone <仓库地址>
-cd <仓库目录>
+git clone https://github.com/coldzonelin/learning-assistant.git
+cd learning-assistant
 ```
 
 ## 配置模型
