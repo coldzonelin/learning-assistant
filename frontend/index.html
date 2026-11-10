@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141513">
+  <title>学习助手</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#study" aria-label="学习助手首页"><span class="brand-mark" aria-hidden="true">✳</span><span>学习助手<small>LEARNING COMPANION</small></span></a>
+      <nav class="main-nav" aria-label="主导航">
+        <a href="#study">学习</a><a href="#library">资料库</a><a href="#assessment">测评</a><a href="#progress">进度</a><a href="#reports">报告</a>
+      </nav>
+      <div class="connection" role="status" aria-live="polite"><span class="connection-dot" id="connection-dot"></span><span id="connection-label">检查连接中</span></div>
+    </div>
+  </header>
+  <main class="main-content">
+    <section class="page" id="study" aria-labelledby="study-title">
+      <div class="study-workspace panel">
+        <aside class="history-panel" aria-label="历史对话">
+          <div class="history-heading"><div><p class="section-kicker">YOUR CONVERSATIONS</p><h1 id="study-title">历史对话</h1></div></div>
+          <div id="history-list" class="history-list"><p class="history-hint">正在加载历史对话…</p></div>
+        </aside>
+        <div class="chat-panel">
+          <div class="chat-toolbar">
+            <div class="material-control"><label for="material-select">对话资料</label><select id="material-select"><option value="">普通对话 · 不引用资料</option></select></div>
+            <button id="new-conversation" class="new-conversation" type="button">＋ 新对话</button>
+          </div>
+          <p id="chat-notice" class="chat-notice" role="status" hidden></p>
+          <div id="chat-messages" class="chat-messages" aria-live="polite">
+            <div class="chat-empty" id="chat-empty"><div class="orb" aria-hidden="true">✳</div><h2>今天想弄懂什么？</h2><p>选择一份资料开始学习，或直接向我提问。<br>每一个问题，都是理解的开始。</p></div>
+          </div>
+          <div id="thinking" class="thinking" role="status" hidden><span class="thinking-dots"><i></i><i></i><i></i></span> 正在思考...</div>
+          <form id="chat-form" class="chat-form"><label class="sr-only" for="chat-input">输入消息</label><textarea id="chat-input" rows="2" placeholder="输入你的问题…" required></textarea><div class="composer-bottom"><span>Enter 发送 · Shift + Enter 换行</span><button id="send-message" type="submit" aria-label="发送消息">↑</button></div></form>
+          <p class="chat-footnote">AI 的回答可能存在错误，请结合资料核对。</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="library" hidden>
+      <div class="page-heading"><div><p class="eyebrow"><span></span> YOUR KNOWLEDGE BASE</p><h1>资料<em>库。</em></h1><p class="intro">把学习资料放在一起，让每一次提问都有依据。</p></div><span class="heading-index">02 / 05</span></div>
+      <div class="panel content-panel"><label class="upload-zone" id="upload-zone" for="file-input"><span class="upload-icon">↑</span><strong>拖拽文件到这里，或点击上传</strong><span>支持 PDF、PPT、Word、Markdown、TXT</span><input id="file-input" type="file" accept=".pdf,.ppt,.pptx,.doc,.docx,.md,.markdown,.txt" multiple hidden></label><p id="library-notice" class="page-notice" role="status" aria-live="polite"></p><div class="section-heading"><div><p class="section-kicker">YOUR MATERIALS</p><h2>我的资料</h2></div></div><div class="table-scroll"><table class="data-table"><thead><tr><th>文件名</th><th>类型</th><th>大小</th><th>状态</th><th>操作</th></tr></thead><tbody id="material-list"><tr><td colspan="5">正在加载…</td></tr></tbody></table></div></div>
+    </section>
+    <section class="page" id="assessment" hidden>
+      <div class="page-heading"><div><p class="eyebrow"><span></span> CHECK YOUR UNDERSTANDING</p><h1>检验<em>所学。</em></h1><p class="intro">通过练习，发现理解中的空白。</p></div><span class="heading-index">03 / 05</span></div>
+      <p id="assessment-notice" class="page-notice" role="status"></p>
+      <div id="assessment-setup" class="panel content-panel setup-card"><p class="section-kicker">START AN ASSESSMENT</p><h2>开始一次测评</h2><p class="section-description">选择学习资料，让练习围绕你的知识展开。</p><label class="field">选择资料<select id="assessment-material"><option value="">请选择已完成解析的资料</option></select></label><label class="field">题目数量<select id="question-count"><option>5</option><option>8</option><option>10</option><option>15</option></select></label><button class="action-button" id="start-assessment">开始测试 <span>→</span></button></div>
+      <div id="assessment-taking" hidden><div class="assessment-bar"><span id="assessment-count"></span><span id="assessment-timer">用时 00:00</span></div><div id="question-list" class="question-list"></div><div class="assessment-actions"><button id="abandon-assessment" class="secondary-button">放弃</button><button id="submit-assessment" class="action-button">提交测评 →</button></div></div>
+      <div id="assessment-result" hidden><div class="panel content-panel result-summary"><div class="score-ring" id="score-ring"><div><strong id="score-value">—</strong><span>得分</span></div></div><div><p class="section-kicker">ASSESSMENT COMPLETE</p><h2>测评结果</h2><p id="result-stats" class="section-description"></p><p id="result-partial" class="section-description"></p></div></div><div id="result-questions" class="result-questions"></div><button id="again-assessment" class="secondary-button">再做一次</button></div>
+      <div class="section-heading history-section"><div><p class="section-kicker">ASSESSMENT HISTORY</p><h2>历史测评</h2></div></div><div id="assessment-history" class="history-cards"><p class="muted-text">正在加载…</p></div>
+    </section>
+    <section class="page" id="progress" hidden>
+      <div class="page-heading"><div><p class="eyebrow"><span></span> TRACK YOUR PROGRESS</p><h1>看见<em>进步。</em></h1><p class="intro">回顾测评表现，找到需要继续巩固的知识点。</p></div><span class="heading-index">04 / 05</span></div>
+      <p id="progress-notice" class="page-notice" role="status"></p><div class="stats-grid" id="progress-stats"></div><div class="progress-grid"><article class="panel content-panel"><p class="section-kicker">KNOWLEDGE MAP</p><h2>知识点雷达</h2><div id="radar" class="radar"></div></article><article class="panel content-panel"><p class="section-kicker">KNOWLEDGE PROGRESS</p><h2>知识点掌握情况</h2><div id="knowledge-list" class="knowledge-list"></div></article></div><div class="section-heading"><div><p class="section-kicker">NEEDS ATTENTION</p><h2>薄弱知识点</h2></div></div><div id="weak-points" class="panel content-panel muted-text"></div><div class="section-heading"><div><p class="section-kicker">MATERIAL NOTES</p><h2>资料详情与笔记</h2></div></div><div id="material-notes" class="history-cards"></div>
+    </section>
+    <section class="page" id="reports" hidden>
+      <div class="page-heading"><div><p class="eyebrow"><span></span> YOUR WEEKLY REFLECTION</p><h1>一周<em>回顾。</em></h1><p class="intro">把零散的学习时光，整理成清晰的成长记录。</p></div><span class="heading-index">05 / 05</span></div>
+      <div class="panel content-panel report-controls"><div><p class="section-kicker">CREATE A REPORT</p><h2>生成学习报告</h2><p class="section-description">回顾所学、发现薄弱点，为下一步做好准备。</p></div><div class="report-form"><label class="field">时间范围<select id="report-range"><option value="week">本周</option><option value="custom">自定义日期</option></select></label><div id="custom-dates" class="date-fields" hidden><label class="field">开始日期<input id="report-start" type="date"></label><label class="field">结束日期<input id="report-end" type="date"></label></div><button id="generate-report" class="action-button">生成报告 →</button></div><p id="report-notice" class="page-notice" role="status"></p></div><article id="report-view" class="panel content-panel report-view" hidden><div class="section-heading"><h2 id="report-title">学习报告</h2><button id="download-report" class="secondary-button">下载报告</button></div><div id="report-content" class="message-body"></div></article><div class="section-heading history-section"><div><p class="section-kicker">PAST REPORTS</p><h2>历史报告</h2></div></div><div id="report-history" class="history-cards"><p class="muted-text">正在加载…</p></div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>✳ &nbsp; 学习助手</span><span>专注学习，自在生长。</span></footer>
+</body>
+</html>
